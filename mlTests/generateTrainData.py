@@ -7,8 +7,8 @@ from PIL import Image
 
 numberXSize = 28
 numberYSize = 28
-canvasXSize = 300
-canvasYSize = 300
+canvasXSize = 416
+canvasYSize = 416
 coordinates = []
 
 x_train = np.load('/home/aroon/Desktop/NumpyArrays/xTrain.npy')
@@ -23,18 +23,18 @@ def generateRandomCoordinate():
     coordinates.append((x,y))
     return (x, y)
 
-for pictureNum in range(1000):
+for pictureNum in range(30000):
     annotations = []
     canvas = np.zeros([canvasXSize,canvasYSize,3],dtype=np.uint8)
     canvas.fill(255) 
 
     for k in range(5):
         x, y = generateRandomCoordinate()
-        imageIndex = random.randint(0, len(x_train))
+        imageIndex = random.randint(0, len(x_train)-1)
         addition = x_train[imageIndex]
 
         annotation = []
-        annotation.append(y_train[imageIndex])
+        annotation.append(y_train[imageIndex].astype(int))
         annotation.append((x+14)/canvasXSize)
         annotation.append((y+14)/canvasYSize)
         annotation.append(numberXSize/canvasXSize)
@@ -55,6 +55,6 @@ for pictureNum in range(1000):
     pathTXT = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameTXT
     print(pathPNG)
     canvas.save(pathPNG)
-    np.savetxt(pathTXT, annotations, fmt='%f')
+    np.savetxt(pathTXT, annotations, fmt='%u, %f, %f, %f, %f')
     
 

@@ -1,1 +1,2 @@
-./darknet detector train /home/aroon/Desktop/MA+HML/darknet/cfg/MA+H.data /home/aroon/Desktop/MA+HML/darknet/cfg/yolov3.cfg ./darknet53.conv.74
+./darknet detector train /home/aroon/Desktop/MA+HML/darknet/cfg/MA+H.data /home/aroon/Desktop/MA+HML/darknet/cfg/yolov3.cfg /home/aroon/MA+H\ Dropbox/darknetBackup/darknet53.conv.74
+./darknet detector test cfg/MA+H.data cfg/yolov3.cfg /home/aroon/Desktop/darknetBackup/yolov3.backup /home/aroon/Desktop/YOLOTrainingData/objDetect0.png

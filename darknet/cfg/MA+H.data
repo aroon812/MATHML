@@ -1,6 +1,6 @@
 classes= 10
-train  = mlTests/train.txt
-valid  = mlTests/test.txt
-names = data/MA+H.names
-backup = backup
+train  = /home/aroon/Desktop/MA+HML/mlTests/train.txt
+valid  = /home/aroon/Desktop/MA+HML/mlTests/test.txt
+names = /home/aroon/Desktop/MA+HML/darknet/data/MA+H.names
+backup = /home/aroon/Desktop/darknetBackup
 
