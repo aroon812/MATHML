@@ -3,6 +3,7 @@
 """
 import numpy as np
 import random 
+import os
 from PIL import Image
 
 numberXSize = 28
@@ -46,15 +47,20 @@ for pictureNum in range(30000):
 
         annotations.append(annotation)
 
-
     annotations = np.array(annotations)
     canvas = Image.fromarray(canvas)
     fileNamePNG = 'objDetect' + str(pictureNum) + '.png'
+    fileNameJPG = 'objDetect' + str(pictureNum) + '.jpg'
     fileNameTXT = 'objDetect' + str(pictureNum) + '.txt'
     pathPNG = '/home/aroon/Desktop/YOLOTrainingData/' + fileNamePNG
+    pathJPG = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameJPG
     pathTXT = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameTXT
-    print(pathPNG)
+    print(pathJPG)
     canvas.save(pathPNG)
+    image = Image.open(pathPNG)
+    rgbImage = image.convert('RGB')
+    rgbImage.save(pathJPG)
+    os.remove(pathPNG)
     np.savetxt(pathTXT, annotations, fmt='%u, %f, %f, %f, %f')
     
 
