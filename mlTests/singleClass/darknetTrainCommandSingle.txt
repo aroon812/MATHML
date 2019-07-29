@@ -1,0 +1,2 @@
+./darknet detector train data/obj-single.data cfg/yolo-obj-single.cfg /home/aroon/Desktop/darknetBackup/darknet53.conv.74
+./darknet detector test data/obj-single.data cfg/yolo-obj-single.cfg /home/aroon/Desktop/darknetBackupSingle/yolo-obj_11000.weights /home/aroon/Desktop/YOLOTrainingDataSingle/objDetect0.jpg

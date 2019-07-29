@@ -1,0 +1,5 @@
+classes= 1
+train  = /home/aroon/Desktop/MA+HML/mlTests/singleClass/train.txt
+valid  = /home/aroon/Desktop/MA+HML/mlTests/singleClass/test.txt
+names = data/obj-single.names
+backup = /home/aroon/Desktop/darknetBackupSingle

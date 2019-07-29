@@ -1,5 +1,0 @@
-classes= 10
-train  = /home/aroon/Desktop/MA+HML/mlTests/train.txt
-valid  = /home/aroon/Desktop/MA+HML/mlTests/test.txt
-names = /home/aroon/Desktop/MA+HML/darknet/build/darknet/x64/data/obj.names
-backup = /home/aroon/Desktop/darknetBackup
