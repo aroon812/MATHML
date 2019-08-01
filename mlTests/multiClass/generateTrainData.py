@@ -15,7 +15,6 @@ canvasXSize = 416
 canvasYSize = 416
 coordinates = []
 
-
 x_train = np.load('/home/aroon/Desktop/NumpyArrays/xTrain.npy')
 y_train = np.load('/home/aroon/Desktop/NumpyArrays/yTrain.npy')
 

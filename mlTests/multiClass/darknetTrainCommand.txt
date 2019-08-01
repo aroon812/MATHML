@@ -1,2 +1,2 @@
-./darknet detector train data/obj.data cfg/yolo-obj.cfg /home/aroon/Desktop/darknetBackup/yolo-obj_last.weights
-./darknet detector test data/obj.data cfg/yolo-obj.cfg /home/aroon/Desktop/darknetBackup/yolo-obj_11000.weights /home/aroon/Desktop/YOLOTrainingData/objDetect0.jpg
+./darknet detector train data/obj.data cfg/yolo-obj.cfg /home/aroon/Desktop/darknetBackup/yolo-obj_10000.weights
+./darknet detector test data/obj.data cfg/yolo-obj.cfg /home/aroon/Desktop/darknetBackup/yolo-obj_7000.weights /home/aroon/Desktop/test2.jpg
