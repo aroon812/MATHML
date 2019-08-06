@@ -6,18 +6,15 @@ from PIL import Image
 import PIL.ImageOps
 
 #hardcoded directories for changing the color. It's a simple utility file you don't need to be that abstract.
-directories = ['EMNISTdata/digits/training', 'EMNISTdata/digits/testing']
-directories.append('EMNISTdata/MNIST/training')
-directories.append('EMNISTdata/MNIST/testing')
+directories = ['/home/aroon/Desktop/EMNIST/digits/training', '/home/aroon/Desktop/EMNIST/digits/testing', '/home/aroon/Desktop/EMNIST/MNIST/training', '/home/aroon/Desktop/EMNIST/MNIST/testing']
 
 for directory in directories:
-    for number in range(10):
-        newDirectory = os.path.join(directory, str(number))
-        newDirectoryTemp = newDirectory.replace('\\', '/')
+    for i in range(10):
+        newDirectory = os.path.join(directory, str(i))
+        newDirectoryTemp = newDirectory
         for filename in os.listdir(newDirectory):
             if filename.endswith(".png"):
                 newDirectory = os.path.join(newDirectoryTemp, filename)
-                newDirectory = newDirectory.replace('\\', '/')
                 print(newDirectory)
                 image = Image.open(newDirectory)
                 PIL.ImageOps.invert(image).convert('RGB').save(newDirectory, "PNG", optimize=True)

@@ -21,12 +21,18 @@ for filename in os.listdir(dataDir):
         labelIndex = newPath.replace('/home/aroon/Documents/HASYv2/hasy-data/v2-', "")
         labelIndex = labelIndex.replace('.png', "")
         index = int(labelIndex)
-        print(newPath)
+        
         img = Image.open(newPath).convert('L')
         img = np.array(img)
         img = img.reshape(numberXSize, numberYSize, 1)
         hasyData.append(img)
-        hasyLabels.append(labels.iloc[index]['latex'])
+        
+        label = labels.iloc[index]['latex']
+        label = label.replace('\\', "")
+        hasyLabels.append(label)
+
+        print('Path: ' + newPath)
+        print('label: ' + label)
 
 hasyData = np.array(hasyData)
 hasyLabels = np.array(hasyLabels)

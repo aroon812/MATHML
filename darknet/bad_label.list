@@ -62,3 +62,5 @@
 /home/aroon/Desktop/YOLOTrainingDataSingle/objDetect2511.txt Wrong annotation: class_id = 5. But class_id should be [from 0 to 0]
 /home/aroon/Desktop/YOLOTrainingDataSingle/objDetect2039.txt Wrong annotation: class_id = 5. But class_id should be [from 0 to 0]
 /home/aroon/Desktop/YOLOTrainingDataSingle/objDetect2049.txt Wrong annotation: class_id = 5. But class_id should be [from 0 to 0]
+/home/aroon/Desktop/YOLOTrainingData/objDetect5005.txt Wrong annotation: class_id = 14. But class_id should be [from 0 to 13]
+/home/aroon/Desktop/YOLOTrainingData/objDetect17500.txt Wrong annotation: class_id = 14. But class_id should be [from 0 to 13]
