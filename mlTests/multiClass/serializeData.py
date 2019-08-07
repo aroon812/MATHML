@@ -57,7 +57,8 @@ for directory in letterDirectories:
                 img = np.array(img)
                 img = img.reshape(numberXSize, numberYSize, 1)
                 x_data.append(img)
-                y_data.append(str(chr(i+65)))
+                y_data.append(i+10)
+                print(i+10)
 
 x_data = np.array(x_data)
 y_data = np.array(y_data)

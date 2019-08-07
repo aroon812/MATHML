@@ -8,18 +8,17 @@ import multiprocessing
 from PIL import Image
 
 numThreads = 12
-dataSetSize = 30000
+dataSetSize = 90000
 numberXSize = 28
 numberYSize = 28
 operatorXSize = 32
 operatorYSize = 32
 canvasXSize = 416
 canvasYSize = 416
-coordinates = []
 maxCharNum = (canvasXSize/operatorXSize)-1
 
-x_train = np.load('/home/aroon/Desktop/NumpyArrays/xTrain.npy')
-y_train = np.load('/home/aroon/Desktop/NumpyArrays/yTrain.npy')
+x_train = np.load('/home/aroon/Desktop/NumpyArrays/xData.npy')
+y_train = np.load('/home/aroon/Desktop/NumpyArrays/yData.npy')
 x_hasy = np.load('/home/aroon/Desktop/NumpyArrays/hasyData.npy')
 y_hasy = np.load('/home/aroon/Desktop/NumpyArrays/hasyLabels.npy')
 
@@ -30,34 +29,29 @@ for i in range(0,len(x_hasy)):
     label = str(y_hasy[i])
     if label is "+":
         x_standard_operators.append(x_hasy[i])
-        y_standard_operators.append(10)
+        y_standard_operators.append(36)
     elif label is "-":
         x_standard_operators.append(x_hasy[i])
-        y_standard_operators.append(11)
+        y_standard_operators.append(37)
     elif label is "times":
         x_standard_operators.append(x_hasy[i])
-        y_standard_operators.append(12)
+        y_standard_operators.append(38)
     elif label is "cdot":
         x_standard_operators.append(x_hasy[i])
-        y_standard_operators.append(13)
+        y_standard_operators.append(38)
     elif label is "/":
         x_standard_operators.append(x_hasy[i])
-        y_standard_operators.append(14)
+        y_standard_operators.append(39)
 
 def generateRandomCoordinate(equationLength):
     """Generate a random starting coordinate 
     based on the length of the equation.
     """
-
     x = random.randint(0, canvasXSize-(operatorXSize*equationLength))
     y = random.randint(0, canvasYSize-operatorYSize)
-    while (x, y) in coordinates:
-        x = random.randint(0, canvasXSize-(operatorXSize*equationLength))
-        y = random.randint(0, canvasYSize-operatorYSize)
-    coordinates.append((x,y))
     return (x, y)
 
-def generateData(startPoint, endPoint):
+def generateData(startPoint, endPoint, procNum):
     """Generate pictures of random equations.
     startpoint and endpoint should be dependent on which thread
     is running the function.
@@ -125,7 +119,7 @@ def generateData(startPoint, endPoint):
         pathPNG = '/home/aroon/Desktop/YOLOTrainingData/' + fileNamePNG
         pathJPG = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameJPG
         pathTXT = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameTXT
-        print(pathJPG)
+        print("process " + str(procNum) + " saving " + pathJPG)
         canvas.save(pathPNG)
         image = Image.open(pathPNG)
         rgbImage = image.convert('RGB')
@@ -133,15 +127,15 @@ def generateData(startPoint, endPoint):
         os.remove(pathPNG)
         np.savetxt(pathTXT, annotations, fmt='%u %f %f %f %f')
 
-
 processes = []
 interval = dataSetSize/numThreads
 for i in range(0,numThreads):
-    process = multiprocessing.Process(target=generateData, args=(int(i*interval), int((i*interval)+interval)))
+    process = multiprocessing.Process(target=generateData, args=(int(i*interval), int((i*interval)+interval), i))
     processes.append(process)
     process.start()
 
 for process in processes:
+    print("joining process " + process)
     process.join()
 
 
