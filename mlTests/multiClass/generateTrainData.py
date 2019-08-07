@@ -15,6 +15,7 @@ operatorXSize = 32
 operatorYSize = 32
 canvasXSize = 416
 canvasYSize = 416
+
 maxCharNum = (canvasXSize/operatorXSize)-1
 
 x_train = np.load('/home/aroon/Desktop/NumpyArrays/xData.npy')
@@ -56,7 +57,7 @@ def generateData(startPoint, endPoint, procNum):
     startpoint and endpoint should be dependent on which thread
     is running the function.
     """
-
+    counter = np.zeros(40)
     for pictureNum in range(startPoint, endPoint):
         annotations = []
         canvas = np.zeros([canvasXSize,canvasYSize,3],dtype=np.uint8)
@@ -85,6 +86,7 @@ def generateData(startPoint, endPoint, procNum):
 
             if lastWasNumber is True:
                 annotation.append(y_train[imageIndex].astype(int))
+                counter[y_train[imageIndex].astype(int)]+=1
                 annotation.append((x+(numberXSize/2))/canvasXSize)
                 annotation.append((y+(numberYSize/2))/canvasYSize)
                 annotation.append(numberXSize/canvasXSize)
@@ -98,6 +100,7 @@ def generateData(startPoint, endPoint, procNum):
 
             else:
                 annotation.append(int(y_standard_operators[imageIndex]))
+                counter[int(y_standard_operators[imageIndex])]+=1
                 annotation.append((x+(operatorXSize/2))/canvasXSize)
                 annotation.append((y+(operatorYSize/2))/canvasYSize)
                 annotation.append(operatorXSize/canvasXSize)
@@ -114,18 +117,14 @@ def generateData(startPoint, endPoint, procNum):
         annotations = np.array(annotations)
         canvas = Image.fromarray(canvas)
         fileNamePNG = 'objDetect' + str(pictureNum) + '.png'
-        fileNameJPG = 'objDetect' + str(pictureNum) + '.jpg'
         fileNameTXT = 'objDetect' + str(pictureNum) + '.txt'
         pathPNG = '/home/aroon/Desktop/YOLOTrainingData/' + fileNamePNG
-        pathJPG = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameJPG
         pathTXT = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameTXT
-        print("process " + str(procNum) + " saving " + pathJPG)
+        print("process " + str(procNum) + " saving " + pathPNG)
         canvas.save(pathPNG)
-        image = Image.open(pathPNG)
-        rgbImage = image.convert('RGB')
-        rgbImage.save(pathJPG)
-        os.remove(pathPNG)
         np.savetxt(pathTXT, annotations, fmt='%u %f %f %f %f')
+
+    print(counter)
 
 processes = []
 interval = dataSetSize/numThreads
@@ -135,7 +134,8 @@ for i in range(0,numThreads):
     process.start()
 
 for process in processes:
-    print("joining process " + process)
     process.join()
+
+
 
 
