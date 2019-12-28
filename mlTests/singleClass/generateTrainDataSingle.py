@@ -43,21 +43,22 @@ for pictureNum in range(3000):
             canvas[y+j][x+i] = addition[j][i]
 
     annotations.append(annotation)
-    annotations = np.array(annotations)
-    
-    canvas = Image.fromarray(canvas)
-    fileNamePNG = 'objDetect' + str(pictureNum) + '.png'
-    fileNameJPG = 'objDetect' + str(pictureNum) + '.jpg'
-    fileNameTXT = 'objDetect' + str(pictureNum) + '.txt'
-    pathPNG = '/home/aroon/Desktop/YOLOTrainingDataSingle/' + fileNamePNG
-    pathJPG = '/home/aroon/Desktop/YOLOTrainingDataSingle/' + fileNameJPG
-    pathTXT = '/home/aroon/Desktop/YOLOTrainingDataSingle/' + fileNameTXT
-    print(pathJPG)
-    canvas.save(pathPNG)
-    image = Image.open(pathPNG)
-    rgbImage = image.convert('RGB')
-    rgbImage.save(pathJPG)
-    os.remove(pathPNG)
-    np.savetxt(pathTXT, annotations, fmt='%u %f %f %f %f')
-    
+
+annotations = np.array(annotations)
+
+canvas = Image.fromarray(canvas)
+fileNamePNG = 'objDetect' + str(pictureNum) + '.png'
+fileNameJPG = 'objDetect' + str(pictureNum) + '.jpg'
+fileNameTXT = 'objDetect' + str(pictureNum) + '.txt'
+pathPNG = '/home/aroon/Desktop/YOLOTrainingDataSingle/' + fileNamePNG
+pathJPG = '/home/aroon/Desktop/YOLOTrainingDataSingle/' + fileNameJPG
+pathTXT = '/home/aroon/Desktop/YOLOTrainingDataSingle/' + fileNameTXT
+print(pathJPG)
+canvas.save(pathPNG)
+image = Image.open(pathPNG)
+rgbImage = image.convert('RGB')
+rgbImage.save(pathJPG)
+os.remove(pathPNG)
+np.savetxt(pathTXT, annotations, fmt='%u %f %f %f %f')
+
 
