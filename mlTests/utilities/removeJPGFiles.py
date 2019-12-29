@@ -1,5 +1,5 @@
 import os
-data_dir = '/home/aroon/Desktop/YOLOTrainingData'
+data_dir = 'Place training data path here'
 
 for filename in os.listdir(data_dir):
     if filename.endswith(".jpg"):

@@ -4,13 +4,12 @@ import numpy as np
 import string
 import os
 
-
-csv_File_Path = 'C:/Users/steal/Desktop/dataConversion/data.csv'
+csv_File_Path = 'CSVFilePath'
 
 count = 1
 last_digit_Name = None
 
-image_Folder_Path = 'C:/Users/steal/Desktop/imageFolder'
+image_Folder_Path = 'DestinationPath'
 
 Alphabet_Mapping_List = list(string.ascii_uppercase)
 

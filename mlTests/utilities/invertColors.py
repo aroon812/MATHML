@@ -5,11 +5,12 @@ import os
 from PIL import Image
 import PIL.ImageOps
 
-#hardcoded directories for changing the color. It's a simple utility file you don't need to be that abstract.
-directories = ['/home/aroon/Desktop/EMNIST/digits/training', '/home/aroon/Desktop/EMNIST/digits/testing', '/home/aroon/Desktop/EMNIST/MNIST/training', '/home/aroon/Desktop/EMNIST/MNIST/testing']
+#directories for inverting image color
+directories = []
+classes = 10
 
 for directory in directories:
-    for i in range(10):
+    for i in range(classes):
         newDirectory = os.path.join(directory, str(i))
         newDirectoryTemp = newDirectory
         for filename in os.listdir(newDirectory):

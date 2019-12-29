@@ -18,10 +18,10 @@ canvasYSize = 416
 
 maxCharNum = (canvasXSize/operatorXSize)-1
 
-x_train = np.load('/home/aroon/Desktop/NumpyArrays/xData.npy')
-y_train = np.load('/home/aroon/Desktop/NumpyArrays/yData.npy')
-x_hasy = np.load('/home/aroon/Desktop/NumpyArrays/hasyData.npy')
-y_hasy = np.load('/home/aroon/Desktop/NumpyArrays/hasyLabels.npy')
+x_train = np.load('./../../../mlTestData/numbers/xData.npy')
+y_train = np.load('./../../../mlTestData/numbers/yData.npy')
+x_hasy = np.load('./../../../mlTestData/symbols/hasyData.npy')
+y_hasy = np.load('./../../../mlTestData/symvols/hasyLabels.npy')
 
 x_standard_operators = []
 y_standard_operators = []
@@ -118,8 +118,8 @@ def generateData(startPoint, endPoint, procNum):
         canvas = Image.fromarray(canvas)
         fileNamePNG = 'objDetect' + str(pictureNum) + '.png'
         fileNameTXT = 'objDetect' + str(pictureNum) + '.txt'
-        pathPNG = '/home/aroon/Desktop/YOLOTrainingData/' + fileNamePNG
-        pathTXT = '/home/aroon/Desktop/YOLOTrainingData/' + fileNameTXT
+        pathPNG = './../../../mlTestData/multiClassData/' + fileNamePNG
+        pathTXT = './../../../mlTestData/multiClassData/' + fileNameTXT
         print("process " + str(procNum) + " saving " + pathPNG)
         canvas.save(pathPNG)
         np.savetxt(pathTXT, annotations, fmt='%u %f %f %f %f')
