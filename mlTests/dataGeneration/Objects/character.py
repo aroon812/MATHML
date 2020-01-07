@@ -12,11 +12,12 @@ class Character:
         self.height = x_train[0].shape[0]
 
     def createYoloLabel(self, startingLocationX, startingLocationY, canvasXSize, canvasYSize):
-        #fix issue where numpy can't convert a letter label to int
-        print(np.unique(y_train))
+        asciiLabel = ord(str(self.label))
+        if asciiLabel > 57:
+            self.label = asciiLabel - 55
+            
         annotation = []
-        print(type(self.label))
-        annotation.append(self.label.astype(int))
+        annotation.append(int(self.label))
         annotation.append((startingLocationX+(self.length/2))/canvasXSize)
         annotation.append((startingLocationY+(self.height/2))/canvasYSize)
         annotation.append(self.length/canvasXSize)
