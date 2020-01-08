@@ -21,7 +21,7 @@ maxCharNum = (canvasXSize/operatorXSize)-1
 x_train = np.load('./../../../mlTestData/numbers/xData.npy')
 y_train = np.load('./../../../mlTestData/numbers/yData.npy')
 x_hasy = np.load('./../../../mlTestData/symbols/hasyData.npy')
-y_hasy = np.load('./../../../mlTestData/symvols/hasyLabels.npy')
+y_hasy = np.load('./../../../mlTestData/symbols/hasyLabels.npy')
 
 x_standard_operators = []
 y_standard_operators = []
