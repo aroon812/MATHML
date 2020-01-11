@@ -1,12 +1,12 @@
 import glob, os
-data_dir = './../../../mlTestData/fractionData/'
+data_dir = './../../mlTestData/multiClassData/'
 
 # Percentage of images to be used for the test set
 percentage_test = 10
 
 # Create and/or truncate train.txt and test.txt
-file_train = open('./../../../mlTestData/dataSplit/train.txt', 'w')  
-file_test = open('./../../../mlTestData/dataSplit/test.txt', 'w')
+file_train = open('train.txt', 'w')  
+file_test = open('test.txt', 'w')
 
 # Populate train.txt and test.txt
 counter = 1  

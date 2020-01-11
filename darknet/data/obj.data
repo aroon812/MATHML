@@ -1,5 +1,5 @@
-classes= 40
-train  = /home/aroon/Desktop/MA+HML/mlTests/multiClass/train.txt
-valid  = /home/aroon/Desktop/MA+HML/mlTests/multiClass/test.txt
+classes= 37
+train  = /home/aroon/CS/MA+H/MA+HML/mlTests/train.txt
+valid  = /home/aroon/CS/MA+H/MA+HML/mlTests/test.txt
 names = data/obj.names
-backup = /home/aroon/Desktop/darknetBackup
+backup = /home/aroon/CS/MA+H/backupWeights

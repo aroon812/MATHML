@@ -3,15 +3,15 @@ import random
 from Objects.character import Character
 from PIL import Image 
 class Fraction: 
-    FRACTION_ID = 40
+    FRACTION_ID = 36
 
     def __init__(self):
         self.char1 = Character()
         self.char2 = Character()
         self.middleZone = 10
+        self.label = self.FRACTION_ID
         self.array = np.zeros([(2*self.char1.height)+self.middleZone,self.char1.length,3],dtype=np.uint8)
         self.array.fill(255)
-        print(self.array.shape)
         self.length = self.char1.length
         self.height = self.char1.height + self.middleZone + self.char2.height
         self.addNumeratorAndDenominator()

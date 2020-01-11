@@ -12,7 +12,7 @@ class Character:
         self.height = x_train[0].shape[0]
 
     def createYoloLabel(self, startingLocationX, startingLocationY, canvasXSize, canvasYSize):
-        asciiLabel = ord(str(self.label))
+        asciiLabel = ord(str(self.label)[0])
         if asciiLabel > 57:
             self.label = asciiLabel - 55
             
