@@ -3,7 +3,7 @@ import random
 from Objects.character import Character
 from PIL import Image 
 class Fraction: 
-    FRACTION_ID = 36
+    FRACTION_ID = 40
 
     def __init__(self):
         self.char1 = Character()

@@ -1,7 +1,9 @@
 import numpy as np
 import random
+from functools import reduce
 from Objects.character import Character
 from Objects.operator import Operator
+from Objects.fraction import Fraction
 
 class Equation:
     EQUATION_ID = 41
@@ -19,39 +21,33 @@ class Equation:
     def generateStructure(self):
         currObjectStart = 0
         lastWasNumber = False
+        lastWasFraction = False
+        lastWasOperator = False
 
+        lastValue = random.choice([Character(), Fraction()])
         for k in range(self.equationLength):
-            if lastWasNumber is False:
-                newCharacter = Character()
-                lastWasNumber = True
-                self.length += newCharacter.length
-                self.objects.append(newCharacter)
-                self.objectsStart.append(currObjectStart)
-                currObjectStart += newCharacter.length
-            else:
-                lastWasNumber = random.choice([True, False])
-                if lastWasNumber is True:
-                    newCharacter = Character()
-                    self.length += newCharacter.length
-                    self.objects.append(newCharacter)
-                    self.objectsStart.append(currObjectStart)
-                    currObjectStart += newCharacter.length
-                else:
-                    newOperator = Operator()
-                    self.length += newOperator.length
-                    self.objects.append(newOperator)
-                    self.objectsStart.append(currObjectStart)
-                    currObjectStart += newOperator.length
-        
+            #print(str(type(lastValue)))
+            self.length += lastValue.length
+            self.objects.append(lastValue)
+            self.objectsStart.append(currObjectStart)
+            currObjectStart += lastValue.length
+
+            if isinstance(lastValue, Character):
+                lastValue = random.choice([Character(), Operator()])
+            elif isinstance(lastValue, Fraction):
+                lastValue = Operator()
+            elif isinstance(lastValue, Operator):
+                lastValue = random.choice([Character(), Fraction()])
+
+            print(type(lastValue))            
+
     def createArray(self):
         self.array = np.zeros([self.height,self.length,3],dtype=np.uint8)
         self.array.fill(255)
 
         for i in range(len(self.objects)):
             for j in range(self.objects[i].length):
-                for k in range(self.objects[i].height-1):
-                    #print(self.array.shape)
-                    #print(self.objects[i].array.shape)
+                for k in range(self.objects[i].height):
                     self.array[k][self.objectsStart[i]+j] = self.objects[i].array[k][j]
 
     def createYoloLabel(self, topLeftX, topLeftY, canvasXSize, canvasYSize):
@@ -66,8 +62,13 @@ class Equation:
         annotations.append(annotation)
 
         for i in range(len(self.objects)):
-            annotations.append(self.objects[i].createYoloLabel(topLeftX+self.objectsStart[i], topLeftY, canvasXSize, canvasYSize))
-
+            label = self.objects[i].createYoloLabel(topLeftX+self.objectsStart[i], topLeftY, canvasXSize, canvasYSize)
+            if type(label[0]) is type([]):
+                for annotation in label:
+                    annotations.append(annotation)
+            else:
+                annotations.append(label)
+       
         return annotations
 
     def getHeight(self):
