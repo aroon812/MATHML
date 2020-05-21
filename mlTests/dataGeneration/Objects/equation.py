@@ -14,6 +14,7 @@ class Equation:
         self.equationLength = random.randint(1, int(self.maxCharNum+1))
         self.objects = []
         self.objectsStart = []
+        self.label = self.EQUATION_ID
         self.generateStructure()
         self.height = self.getHeight()
         self.createArray()
@@ -26,7 +27,6 @@ class Equation:
 
         lastValue = random.choice([Character(), Fraction()])
         for k in range(self.equationLength):
-            #print(str(type(lastValue)))
             self.length += lastValue.length
             self.objects.append(lastValue)
             self.objectsStart.append(currObjectStart)
@@ -37,9 +37,7 @@ class Equation:
             elif isinstance(lastValue, Fraction):
                 lastValue = Operator()
             elif isinstance(lastValue, Operator):
-                lastValue = random.choice([Character(), Fraction()])
-
-            print(type(lastValue))            
+                lastValue = random.choice([Character(), Fraction()])         
 
     def createArray(self):
         self.array = np.zeros([self.height,self.length,3],dtype=np.uint8)

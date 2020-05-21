@@ -1,4 +1,4 @@
-classes= 37
+classes= 42
 train  = /home/aroon/CS/MA+H/MA+HML/mlTests/train.txt
 valid  = /home/aroon/CS/MA+H/MA+HML/mlTests/test.txt
 names = data/obj.names

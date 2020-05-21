@@ -6,7 +6,7 @@ import numpy as np
 import random 
 import os
 import multiprocessing 
-from Objects.fraction import Fraction
+from Objects.equation import Equation
 from PIL import Image
 
 numThreads = 12
@@ -25,22 +25,26 @@ def generateData(startPoint, endPoint, procNum):
     startpoint and endpoint should be dependent on which thread
     is running the function.
     """
-    counter = np.zeros(37)
+    counter = np.zeros(42)
     for pictureNum in range(startPoint, endPoint):
         canvas = np.zeros([canvasXSize,canvasYSize,3],dtype=np.uint8)
         canvas.fill(255) 
 
-        fraction = Fraction()
-        x, y = generateRandomCoordinate(fraction.length, fraction.height)
-        for i in range(fraction.height):
-            for j in range(fraction.length):
-                canvas[y+i][x+j] = fraction.array[i][j]
+        equation = Equation()
+        x, y = generateRandomCoordinate(equation.length, equation.height)
+        for i in range(equation.height):
+            for j in range(equation.length):
+                canvas[y+i][x+j] = equation.array[i][j]
         
-        counter[fraction.char1.label] += 1 
-        counter[fraction.char2.label] += 1 
-        counter[fraction.label] += 1
+        """
+        finish
+        """
+        for item in equation.objects:
+            counter[item.label] += 1 
+        counter[equation.label] += 1 
+           
 
-        annotation = fraction.createYoloLabel(x, y, canvasXSize, canvasYSize)
+        annotation = equation.createYoloLabel(x, y, canvasXSize, canvasYSize)
         annotation = np.array(annotation)
         canvas = Image.fromarray(canvas)
         fileNamePNG = 'objDetect' + str(pictureNum) + '.png'

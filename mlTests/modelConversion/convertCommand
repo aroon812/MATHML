@@ -1,0 +1,2 @@
+python darknet_to_keras.py /home/aroon/CS/MA+H/MA+HML/darknet/cfg/yolo-obj.cfg /home/aroon/CS/MA+H/backupWeights/testModel.weights /home/aroon/CS/MA+H/backupWeights/math_weights.h5
+python keras_to_coreml.py /home/aroon/CS/MA+H/backupWeights/math_weights.h5 /home/aroon/CS/MA+H/backupWeights/math_weights.mlmodel
